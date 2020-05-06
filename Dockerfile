@@ -1,4 +1,4 @@
-FROM php:7-fpm-alpine
+FROM php:5.6-fpm-alpine
 
 # GD & Imagick
 RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS"
