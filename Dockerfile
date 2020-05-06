@@ -13,16 +13,16 @@ RUN apk --no-cache --update add \
 	autoconf \
 	g++ \
 	make \
-	py-setuptools \
+	py-pip \
 	imagemagick-dev \
 	libtool \
 	bash git openssh \
 	bind-tools \
 	zlib-dev libzip-dev \
-	libonig-dev
+	oniguruma-dev
 
 # Install supervisord
-RUN easy_install-2.7 supervisor
+RUN pip install supervisor
 
 # PHP extensions
 RUN docker-php-ext-install mbstring
@@ -30,14 +30,10 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install simplexml
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-configure gd \
-	--with-gd \
-	--with-freetype-dir=/usr/include/ \
-	--with-png-dir=/usr/include/ \
-	--with-jpeg-dir=/usr/include/
+RUN docker-php-ext-configure gd
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install json
-RUN docker-php-ext-configure zip --with-libzip
+RUN docker-php-ext-configure zip
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install pcntl
 RUN pecl install redis
