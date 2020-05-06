@@ -18,7 +18,8 @@ RUN apk --no-cache --update add \
 	libtool \
 	bash git openssh \
 	bind-tools \
-	zlib-dev libzip-dev
+	zlib-dev libzip-dev \
+	libonig-dev
 
 # Install supervisord
 RUN easy_install-2.7 supervisor
