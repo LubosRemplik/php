@@ -39,8 +39,6 @@ RUN docker-php-ext-install json
 RUN docker-php-ext-configure zip --with-libzip
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install pcntl
-RUN pecl install redis
-RUN docker-php-ext-enable redis
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
 RUN pecl install imagick-3.4.3
