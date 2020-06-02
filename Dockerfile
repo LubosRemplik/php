@@ -55,3 +55,4 @@ RUN chmod +x /root/getcomposer.sh && \
 	sh /root/getcomposer.sh && \
 	mv composer.phar /usr/local/bin/composer && \
 	composer --version
+RUN git config --global url."https://d558f9a98f1fe0f81eacf9370988b7b6480ac16c:@github.com/".insteadOf "https://github.com/"
