@@ -19,7 +19,8 @@ RUN apk --no-cache --update add \
 	bash git openssh \
 	bind-tools \
 	zlib-dev libzip-dev \
-	oniguruma-dev
+	oniguruma-dev \
+	php7-bcmath
 
 # Install supervisord
 RUN pip install supervisor
@@ -45,6 +46,7 @@ RUN docker-php-ext-enable imagick
 RUN docker-php-ext-install soap
 RUN docker-php-ext-install calendar
 RUN docker-php-ext-install exif
+RUN docker-php-ext-install bcmath
 
 # Composer
 COPY ./getcomposer.sh /root/getcomposer.sh
