@@ -5,11 +5,14 @@ RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS"
 
 # Dependencies
 RUN apk --no-cache --update add \
-    icu-dev \
-	libxml2-dev \
+	freetype \
+	libpng \
+	libjpeg-turbo \
 	freetype-dev \
-	libjpeg-turbo-dev \
 	libpng-dev \
+	libjpeg-turbo-dev \
+	icu-dev \
+	libxml2-dev \
 	autoconf \
 	g++ \
 	make \
@@ -32,7 +35,7 @@ RUN docker-php-ext-install simplexml
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-RUN docker-php-ext-install gd
+RUN NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install json
 RUN docker-php-ext-configure zip
 RUN docker-php-ext-install zip
@@ -47,6 +50,8 @@ RUN docker-php-ext-install soap
 RUN docker-php-ext-install calendar
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install bcmath
+
+RUN apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev
 
 # Composer
 COPY ./getcomposer.sh /root/getcomposer.sh
