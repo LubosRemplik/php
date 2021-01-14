@@ -31,7 +31,11 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install simplexml
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-configure gd
+RUN docker-php-ext-configure gd \
+	--with-gd \
+	--with-freetype-dir=/usr/include/ \
+	--with-png-dir=/usr/include/ \
+	--with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install json
 RUN docker-php-ext-configure zip
